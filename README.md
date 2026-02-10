@@ -41,17 +41,24 @@ The remaining should be installed by referencing their manuals, however, steps t
 | eza                    | A newer bin for 'ls'                                                |
 | vivid                  | A tool for configuring LS_COLORS                                    |
 
+### Set OS theme
+
+``` bash
+# Set OS theme to dark
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+```
+
 ### Packages and stow
 
 ```bash
 # Install zsh
-dnf install zsh git make stow tmux nvim bat
+dnf install kitty zsh git make stow fzf tmux nvim bat sway
 
 # Install hyperland
-dnf install hyperland kitty mako rofi
+dnf install hyperland mako rofi
 
 # Install Hyprland components
-dnf install --releasever=41 eza hypridle hyprlock hyprpaper hyprpicker
+dnf install --releasever=41 hypridle hyprlock hyprpaper hyprpicker
 ```
 
 ### git
@@ -101,11 +108,8 @@ unzip ~/Downloads/${font_name}.zip -d ~/.local/share/fonts/${font_name} && fc-ca
 # list all installed Nerd fonts
 fc-list | grep ${font_name}
 
-# ~/.env_vars
-echo "export NERD_FONT_NAME=\"${font_name} Nerd Font\"" >> ~/.env_vars
-
-# ~/.zshrc
-source "$HOME/.env_vars"
+# ~/dotfiles/.env_vars
+echo "export NERD_FONT_NAME=\"${font_name} Nerd Font\"" >> ~/dotfiles/.env_vars
 ```
 
 ### vivid
@@ -169,6 +173,8 @@ cp -ru ~/.config/vivid ~/dotfiles/.config/
 ### Apply
 
 ```bash
+mv ~/.zshrc ~/.zshrc.backup
 cd ~/dotfiles
 stow .
 ```
+
